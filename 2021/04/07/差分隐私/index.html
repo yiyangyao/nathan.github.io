@@ -21,20 +21,21 @@
     var CONFIG = {"hostname":"yiyangyao.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="差分隐私算法差分隐私（Differential Privacy）：保护的是数据源中一点微小改动导致的隐私泄露问题，假设给定两个数据集D和D’，它们有且仅有一条数据不一样，这一条数据就属于差分隐私，DP算法就是保护这一条数据的隐私不被暴露出来。 数据加噪对原始数据集进行加噪，敏感度为1，原始数据集为 [452, 477, 8, 1, 4, 6037]  敏感度：指增&#x2F;减一条数据对具体操作（如coun">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Hexo">
-<meta property="og:url" content="https://yiyangyao.github.io/2021/04/05/hello-hexo/index.html">
+<meta property="og:title" content="差分隐私">
+<meta property="og:url" content="https://yiyangyao.github.io/2021/04/07/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/index.html">
 <meta property="og:site_name" content="ByteLearner">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="差分隐私算法差分隐私（Differential Privacy）：保护的是数据源中一点微小改动导致的隐私泄露问题，假设给定两个数据集D和D’，它们有且仅有一条数据不一样，这一条数据就属于差分隐私，DP算法就是保护这一条数据的隐私不被暴露出来。 数据加噪对原始数据集进行加噪，敏感度为1，原始数据集为 [452, 477, 8, 1, 4, 6037]  敏感度：指增&#x2F;减一条数据对具体操作（如coun">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-05T07:59:24.265Z">
-<meta property="article:modified_time" content="2021-04-06T12:49:35.420Z">
+<meta property="article:published_time" content="2021-04-07T12:47:29.000Z">
+<meta property="article:modified_time" content="2021-04-07T12:49:27.660Z">
 <meta property="article:author" content="Nathan Yao">
-<meta property="article:tag" content="yao">
+<meta property="article:tag" content="差分隐私">
+<meta property="article:tag" content="dp保护">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://yiyangyao.github.io/2021/04/05/hello-hexo/">
+<link rel="canonical" href="https://yiyangyao.github.io/2021/04/07/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/">
 
 
 <script id="page-configurations">
@@ -47,7 +48,7 @@
   };
 </script>
 
-  <title>Hello Hexo | ByteLearner</title>
+  <title>差分隐私 | ByteLearner</title>
   
 
 
@@ -153,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yiyangyao.github.io/2021/04/05/hello-hexo/">
+    <link itemprop="mainEntityOfPage" href="https://yiyangyao.github.io/2021/04/07/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -166,7 +167,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello Hexo
+          差分隐私
         </h1>
 
         <div class="post-meta">
@@ -175,16 +176,19 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-04-05 15:59:24" itemprop="dateCreated datePublished" datetime="2021-04-05T15:59:24+08:00">2021-04-05</time>
+              <time title="创建时间：2021-04-07 20:47:29 / 修改时间：20:49:27" itemprop="dateCreated datePublished" datetime="2021-04-07T20:47:29+08:00">2021-04-07</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-06 20:49:35" itemprop="dateModified" datetime="2021-04-06T20:49:35+08:00">2021-04-06</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/" itemprop="url" rel="index"><span itemprop="name">差分隐私</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -192,7 +196,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>395</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -211,20 +215,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="差分隐私算法"><a href="#差分隐私算法" class="headerlink" title="差分隐私算法"></a>差分隐私算法</h2><p>差分隐私（Differential Privacy）：保护的是数据源中一点微小改动导致的隐私泄露问题，假设给定两个数据集D和D’，它们有且仅有一条数据不一样，这一条数据就属于差分隐私，DP算法就是保护这一条数据的隐私不被暴露出来。</p>
+<h3 id="数据加噪"><a href="#数据加噪" class="headerlink" title="数据加噪"></a>数据加噪</h3><p>对原始数据集进行加噪，敏感度为1，原始数据集为 [452, 477, 8, 1, 4, 6037]</p>
+<ul>
+<li>敏感度：指增/减一条数据对具体操作（如count/sum/avg等）造成的影响。该场景下各个区间段是互不相交的count结果，因此增/减一条数据影响某区间的统计数为1，即敏感度为1。</li>
+<li>加噪：向原始数据集中引入随机性，以满足差分隐私的思想，对于数值型的查询结果，常用的方法是向查询结果中加入服从拉普拉斯分布的噪声。</li>
+<li>拉普拉斯机制：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">noise = numpy.random.laplace(loc, scale=<span class="number">1</span>/ε, size=<span class="number">1</span>)  <span class="comment"># 从参数为（loc, scale）的拉普拉斯分布中随机抽取1个样本，返回数组类型的变量noise</span></span><br><span class="line"></span><br><span class="line">noise_count = count + noise[<span class="number">0</span>]  <span class="comment"># 向原始的计数结果count中添加噪声，得到浮点型的噪声计数noise_count</span></span><br><span class="line"></span><br><span class="line">ε: 为隐私预算（privacy budget），取值越小意味着隐私保护越强</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s --debug</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line"></span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="Clean"><a href="#Clean" class="headerlink" title="Clean"></a>Clean</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>假设对原始数据加噪后的数据集为：</p>
+<p>[452, 477, 8, 1, 4, 6037] -&gt; [449.87, 475.66, 8.20, 1.11, 4.03, 6036.97]</p>
+<h3 id="可用性评估"><a href="#可用性评估" class="headerlink" title="可用性评估"></a>可用性评估</h3><p>对加噪处理后的数据进行可用性评估，根据设计的评估规则，若无法满足该评估规则则需要修改机制或调整参数重新进行加噪处理。</p>
+<ul>
+<li>为什么要可用性评估：</li>
+</ul>
+<p>如果我设计一个算法，不管你输入是什么，我总是输出数字0，那这个算法也是满足DP的，因为它的输出跟输入压根没关系，当然不会泄露隐私。</p>
+<p>比如原始数据的18-23年龄维度的占比是6.4%，而经过加噪处理后的占比到达了10%，超过了评估规定的阈值，那么该DP算法是不具有可用性，或者可用性非常差</p>
+<h3 id="取整处理"><a href="#取整处理" class="headerlink" title="取整处理"></a>取整处理</h3><p>如果用的是浮点型的加噪算法，需要对加噪后的小数点进行处理，假设采用下面的处理逻辑：</p>
+<ul>
+<li>若加噪后比对应原始数据大，直接舍弃小数位，否则小数位直接进位</li>
+</ul>
+<p>则取整后的数据集为：</p>
+<p>[449.87, 475.66, 8.20, 1.11, 4.03, 6036.97] -&gt; [450, 476, 8, 1, 4, 6037]</p>
+<h3 id="一致性处理"><a href="#一致性处理" class="headerlink" title="一致性处理"></a>一致性处理</h3><p>对加噪后的数据集进行规整，保证加噪前后各标签内的所有属性总和一致</p>
+<ul>
+<li>原始数据：[452, 477, 8, 1, 4, 6037] -&gt; 总和：6979</li>
+<li>加噪后数据：[450, 476, 8, 1, 4, 6037] -&gt; 总和：6976</li>
+</ul>
+<p>计算两个数据集的差值 a = 6979-6976 = 3，从第一项开始加/减 1（a &gt; 0 时 -1，a &lt; 0时 + 1），同时 a - 1，重复执行直到 a=0 为止。</p>
+<p>则规整后的数据集为：</p>
+<p>[450, 476, 8, 1, 4, 6037] -&gt; [449, 475, 7, 1, 4, 6037]</p>
+<h3 id="返回差分隐私后的结果集"><a href="#返回差分隐私后的结果集" class="headerlink" title="返回差分隐私后的结果集"></a>返回差分隐私后的结果集</h3><p>Return [449, 475, 7, 1, 4, 6037]</p>
+<p>对比下画像维度下（18-23）的占比：</p>
+<ul>
+<li>原数据集：452/(8+452+477+6037+4+1)= 452/6979 = 6.48 % </li>
+<li>DP后的数据集：449/(8+452+477+6037+4+1)= 449/6979 = 6.43 %</li>
+</ul>
 
     </div>
 
@@ -233,17 +260,21 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/" rel="tag"># 差分隐私</a>
+              <a href="/tags/dp%E4%BF%9D%E6%8A%A4/" rel="tag"># dp保护</a>
+          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/04/06/Linux%E5%86%85%E6%A0%B8%E6%A6%82%E8%AE%BA/" rel="next" title="Linux内核概论">
-      Linux内核概论 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/04/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%96%AD/" rel="prev" title="计算机中断">
+      <i class="fa fa-chevron-left"></i> 计算机中断
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -303,7 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clean"><span class="nav-number">1.5.</span> <span class="nav-text">Clean</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">差分隐私算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%99%AA"><span class="nav-number">1.1.</span> <span class="nav-text">数据加噪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E7%94%A8%E6%80%A7%E8%AF%84%E4%BC%B0"><span class="nav-number">1.2.</span> <span class="nav-text">可用性评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%95%B4%E5%A4%84%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">取整处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E5%A4%84%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">一致性处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="nav-number">1.5.</span> <span class="nav-text">返回差分隐私后的结果集</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -436,7 +467,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'yiyangyao.github.io',
       owner       : 'yiyangyao',
       admin       : ['yiyangyao'],
-      id          : 'da110896693a6e747214a514573c4441',
+      id          : '04c35c58b79b6819c2359dcf70158b37',
         language: 'zh-CN',
       distractionFreeMode: true
     });

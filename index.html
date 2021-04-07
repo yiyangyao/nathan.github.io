@@ -150,6 +150,124 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yiyangyao.github.io/2021/04/07/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Nathan Yao">
+      <meta itemprop="description" content="努力做一只不断充电的程序猿">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ByteLearner">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/07/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/" class="post-title-link" itemprop="url">差分隐私</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-07 20:47:29 / 修改时间：20:49:27" itemprop="dateCreated datePublished" datetime="2021-04-07T20:47:29+08:00">2021-04-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/" itemprop="url" rel="index"><span itemprop="name">差分隐私</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="差分隐私算法"><a href="#差分隐私算法" class="headerlink" title="差分隐私算法"></a>差分隐私算法</h2><p>差分隐私（Differential Privacy）：保护的是数据源中一点微小改动导致的隐私泄露问题，假设给定两个数据集D和D’，它们有且仅有一条数据不一样，这一条数据就属于差分隐私，DP算法就是保护这一条数据的隐私不被暴露出来。</p>
+<h3 id="数据加噪"><a href="#数据加噪" class="headerlink" title="数据加噪"></a>数据加噪</h3><p>对原始数据集进行加噪，敏感度为1，原始数据集为 [452, 477, 8, 1, 4, 6037]</p>
+<ul>
+<li>敏感度：指增/减一条数据对具体操作（如count/sum/avg等）造成的影响。该场景下各个区间段是互不相交的count结果，因此增/减一条数据影响某区间的统计数为1，即敏感度为1。</li>
+<li>加噪：向原始数据集中引入随机性，以满足差分隐私的思想，对于数值型的查询结果，常用的方法是向查询结果中加入服从拉普拉斯分布的噪声。</li>
+<li>拉普拉斯机制：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">noise = numpy.random.laplace(loc, scale=<span class="number">1</span>/ε, size=<span class="number">1</span>)  <span class="comment"># 从参数为（loc, scale）的拉普拉斯分布中随机抽取1个样本，返回数组类型的变量noise</span></span><br><span class="line"></span><br><span class="line">noise_count = count + noise[<span class="number">0</span>]  <span class="comment"># 向原始的计数结果count中添加噪声，得到浮点型的噪声计数noise_count</span></span><br><span class="line"></span><br><span class="line">ε: 为隐私预算（privacy budget），取值越小意味着隐私保护越强</span><br></pre></td></tr></table></figure>
+
+<p>假设对原始数据加噪后的数据集为：</p>
+<p>[452, 477, 8, 1, 4, 6037] -&gt; [449.87, 475.66, 8.20, 1.11, 4.03, 6036.97]</p>
+<h3 id="可用性评估"><a href="#可用性评估" class="headerlink" title="可用性评估"></a>可用性评估</h3><p>对加噪处理后的数据进行可用性评估，根据设计的评估规则，若无法满足该评估规则则需要修改机制或调整参数重新进行加噪处理。</p>
+<ul>
+<li>为什么要可用性评估：</li>
+</ul>
+<p>如果我设计一个算法，不管你输入是什么，我总是输出数字0，那这个算法也是满足DP的，因为它的输出跟输入压根没关系，当然不会泄露隐私。</p>
+<p>比如原始数据的18-23年龄维度的占比是6.4%，而经过加噪处理后的占比到达了10%，超过了评估规定的阈值，那么该DP算法是不具有可用性，或者可用性非常差</p>
+<h3 id="取整处理"><a href="#取整处理" class="headerlink" title="取整处理"></a>取整处理</h3><p>如果用的是浮点型的加噪算法，需要对加噪后的小数点进行处理，假设采用下面的处理逻辑：</p>
+<ul>
+<li>若加噪后比对应原始数据大，直接舍弃小数位，否则小数位直接进位</li>
+</ul>
+<p>则取整后的数据集为：</p>
+<p>[449.87, 475.66, 8.20, 1.11, 4.03, 6036.97] -&gt; [450, 476, 8, 1, 4, 6037]</p>
+<h3 id="一致性处理"><a href="#一致性处理" class="headerlink" title="一致性处理"></a>一致性处理</h3><p>对加噪后的数据集进行规整，保证加噪前后各标签内的所有属性总和一致</p>
+<ul>
+<li>原始数据：[452, 477, 8, 1, 4, 6037] -&gt; 总和：6979</li>
+<li>加噪后数据：[450, 476, 8, 1, 4, 6037] -&gt; 总和：6976</li>
+</ul>
+<p>计算两个数据集的差值 a = 6979-6976 = 3，从第一项开始加/减 1（a &gt; 0 时 -1，a &lt; 0时 + 1），同时 a - 1，重复执行直到 a=0 为止。</p>
+<p>则规整后的数据集为：</p>
+<p>[450, 476, 8, 1, 4, 6037] -&gt; [449, 475, 7, 1, 4, 6037]</p>
+<h3 id="返回差分隐私后的结果集"><a href="#返回差分隐私后的结果集" class="headerlink" title="返回差分隐私后的结果集"></a>返回差分隐私后的结果集</h3><p>Return [449, 475, 7, 1, 4, 6037]</p>
+<p>对比下画像维度下（18-23）的占比：</p>
+<ul>
+<li>原数据集：452/(8+452+477+6037+4+1)= 452/6979 = 6.48 % </li>
+<li>DP后的数据集：449/(8+452+477+6037+4+1)= 449/6979 = 6.43 %</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://yiyangyao.github.io/2021/04/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%96%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -657,18 +775,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -704,12 +822,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">7k</span>
+    <span title="站点总字数">8k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">6 分钟</span>
+    <span title="站点阅读时长">7 分钟</span>
 </div>
 
         
