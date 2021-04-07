@@ -175,7 +175,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-07 00:32:25 / 修改时间：01:04:09" itemprop="dateCreated datePublished" datetime="2021-04-07T00:32:25+08:00">2021-04-07</time>
+              <time title="创建时间：2021-04-07 00:32:25 / 修改时间：09:26:14" itemprop="dateCreated datePublished" datetime="2021-04-07T00:32:25+08:00">2021-04-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -197,14 +197,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4k</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -239,8 +239,6 @@
 <p><strong>所谓的“进程上下文”</strong>，就是一个进程在执行的时候，CPU的所有寄存器中的值、进程的状态以及堆栈上的内容，当内核需要切换到另一个进程时，它需要保存当前进程的所有状态，即保存当前进程的进程上下文，以便再次执行该进程时，能够恢复切换时的状态，继续执行。</p>
 <p>硬件通过触发信号，导致内核调用中断处理程序，进入内核空间。这个过程中，硬件的一些变量和参数也要传递给内核，内核通过这些参数进行中断处理。</p>
 <p><strong>所谓的“中断上下文”</strong>，其实也可以看作就是硬件传递过来的这些参数和内核需要保存的一些其他环境（主要是当前被中断的进程环境）。</p>
-<p>当一个进程在执行时,CPU的所有寄存器中的值、进程的状态以及堆栈中的内容被称为该进程的上下文。当内核需要切换到另一个进程时，它需要保存当前进程的所有状态，即保存当前进程的上下文，以便在再次执行该进程时，能够必得到切换时的状态执行下去。在LINUX中，当前进程上下文均保存在进程的任务数据结构中。在发生中断时,内核就在被中断进程的上下文中，在内核态下执行中断服务例程。但同时会保留所有需要用到的资源，以便中继服务结束时能恢复被中断进程的执行。</p>
-<p><strong>Linux内核工作在进程上下文或者中断上下文。提供系统调用服务的内核代码代表发起系统调用的应用程序运行在进程上下文；另一方面，中断处理程序，异步运行在中断上下文。中断上下文和特定进程无关。</strong></p>
 <p><strong>上下文context</strong>：上下文简单说来就是一个环境，相对于进程而言，就是进程执行时的环境。具体来说就是各个变量和数据，包括所有的寄存器变量、进程打开的文件、内存信息等。</p>
 <p><strong>一个进程的上下文可以分为三个部分:用户级上下文、寄存器上下文以及系统级上下文。</strong></p>
 <ul>
@@ -249,8 +247,8 @@
 <li>系统级上下文: 进程控制块task_struct、内存管理信息(mm_struct、vm_area_struct、pgd、pte)、内核栈</li>
 </ul>
 <p><strong>当发生进程调度时</strong>，进行<strong>进程切换</strong>就是上下文切换(context switch)。操作系统必须对上面提到的全部信息进行切换，新调度的进程才能运行。而<strong>系统调用</strong>进行的是模式切换(mode switch)。模式切换与进程切换比较起来，容易很多，而且节省时间，因为模式切换最主要的任务只是切换进程寄存器上下文的切换。</p>
-<p>进程上下文主要是异常处理程序和内核线程。<strong>内核之所以进入进程上下文是因为进程自身的一些工作需要在内核中做</strong>。例如，<strong>系统调用是为当前进程服务的，异常通常是处理进程导致的错误状态等</strong>。所以在进程上下文中引用current是有意义的。</p>
-<p><strong>内核进入中断上下文是因为中断信号而导致的中断处理或软中断</strong>。而中断信号的发生是随机的，中断处理程序及软中断并不能事先预测发生中断时当前运行的是哪个进程，所以在中断上下文中引用current是可以的，但没有意义。事实上，对于A进程希望等待的中断信号，可能在B进程执行期间发生。例如，A进程启动写磁盘操作，A进程睡眠后B进程在运行，当磁盘写完后磁盘中断信号打断的是B进程，在中断处理时会唤醒A进程。</p>
+<p>进程上下文主要是异常处理程序和内核线程。<strong>内核之所以进入进程上下文是因为进程自身的一些工作需要在内核中做</strong>。例如，<strong>系统调用是为当前进程服务的，异常通常是处理进程导致的错误状态等</strong>。</p>
+<p><strong>内核进入中断上下文是因为中断信号而导致的中断处理或软中断</strong>。而中断信号的发生是随机的，中断处理程序及软中断并不能事先预测发生中断时当前运行的是哪个进程，事实上，对于A进程希望等待的中断信号，可能在B进程执行期间发生。例如，A进程启动写磁盘操作，A进程睡眠后B进程在运行，当磁盘写完后磁盘中断信号打断的是B进程，在中断处理时会唤醒A进程。</p>
 <p><strong>内核可以处于两种上下文</strong>：进程上下文和中断上下文。</p>
 <ul>
 <li>在系统调用之后，用户应用程序进入内核空间，此后内核空间针对用户空间相应进程的代表就运行于进程上下文。</li>
@@ -273,7 +271,7 @@
 <ol start="4">
 <li>访问用户空间虚拟内存。</li>
 </ol>
-<p>因为中断上下文是和特定进程无关的，它是内核代表硬件运行在内核空间，所以在中断上下文无法访问用户空间的虚拟地址<br>xitongdiaoyong</p>
+<p>因为中断上下文是和特定进程无关的，它是内核代表硬件运行在内核空间，所以在中断上下文无法访问用户空间的虚拟地址</p>
 <ol start="5">
 <li>中断处理例程不应该设置成reentrant（可被并行或递归调用的例程）。</li>
 </ol>
@@ -282,14 +280,14 @@
 <li>中断处理例程可以被更高级别的IRQ中断。</li>
 </ol>
 <p>如果想禁止这种中断，可以将中断处理例程定义成快速处理例程，相当于告诉CPU，该例程运行时，禁止本地CPU上所有中断请求。这直接导致的结果是，由于其他中断被延迟响应，系统性能下降。</p>
-<h4 id="权限级："><a href="#权限级：" class="headerlink" title="权限级："></a>权限级：</h4><p><strong>RING0-&gt;RING3</strong>：由于进程属于用户过程，不应该运行在特权级0（ring0）之上，所以将其指定到ring3上运行，而从ring0到ring3的切换便是首要解决的问题，首先是不能直接jmp过去的，因为在386保护模式下这种像低特权级的跳转会触发保护异常（#PF），所以只能另谋他路。<strong>考虑到进程请求系统调用或者制造软件中断时会发生ring3到ring0的切换</strong>，返回时使用iretd即可跳回原特权级，而在中断门的特权级访问规则处进一步得到证明，所以可以通过伪造中断现场然后使用ired的方式实现向低特权级的转移。简单的代码示例如下：</p>
+<h3 id="权限级："><a href="#权限级：" class="headerlink" title="权限级："></a>权限级：</h3><p><strong>RING0-&gt;RING3</strong>：由于进程属于用户过程，不应该运行在特权级0（ring0）之上，所以将其指定到ring3上运行，而从ring0到ring3的切换便是首要解决的问题，首先是不能直接jmp过去的，因为在386保护模式下这种像低特权级的跳转会触发保护异常（#PF），所以只能另谋他路。<strong>考虑到进程请求系统调用或者制造软件中断时会发生ring3到ring0的切换</strong>，返回时使用iretd即可跳回原特权级，而在中断门的特权级访问规则处进一步得到证明，所以可以通过伪造中断现场然后使用ired的方式实现向低特权级的转移。简单的代码示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">push ss</span><br><span class="line">push esp</span><br><span class="line">push eflags</span><br><span class="line">push cs</span><br><span class="line">push eip</span><br><span class="line">iretd</span><br></pre></td></tr></table></figure>
 <p><strong>RING3-&gt;RING0</strong>：进入了ring3之后同样存在如何返回的问题，这个问题似乎很简单，直接使用call指令不就行了吗？但是为了保护各个特权级的堆栈，特权级的切换必然要伴随着堆栈的切换，这也是之前为什么要将ss和esp压栈的原因，但返回ring0的时候我们的用户程序是无法找到系统堆栈的位置的，所以只能在ring0下对系统堆栈状况进行设置。那下面同样催生了另外一个问题，把他们的值保存在什么地方？ring0下的某个地方？OR ring3的某个位置？事实上都不行，因为若在ring0下，用户程序同样无法访问；而在ring3下的话，这就违背了我们不去主动破坏不同特权级下堆栈的前提。但总是有办法的，不是吗？386的保护模式已经为我们提过了一种机制，使用TSS（任务状态段），简单说就是我们通过使用tss中的某些位来存储ring0的堆栈信息，之后仍在ring0下加载该tss段就可以了。体现在代码中就是</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xor eax, eax</span><br><span class="line">mov ax, SELECTOR_TSS</span><br><span class="line">ltr ax</span><br></pre></td></tr></table></figure>
 <p>修改tss中的堆栈信息时使用以下指令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lea esp,[esp+P_STACKTOP]</span><br><span class="line">mov dword[tss+TSS3_S_SP0], eax</span><br></pre></td></tr></table></figure>
 <p>中断过程发生中断之后，系统会自动将ss,esp,eflags,cs,eip压入用户堆栈，然后我们自己将其他寄存器的值进行保存，push***，之后打开中断，使得高优先级的中断可以继续产生，然后中断处理，清除该中断位，中断前寄存器值的恢复，中断返回。其中中断处理过程很可能使用到堆栈，因此需要切换到内核堆栈中，注意此处的内核堆栈和tss中所指定的堆栈并非一个，tss中的堆栈是为了过程返回使用的，可以理解成进作为一个中介，显然让中介做太多事情是不明智的，所以此处使用另外一个内核堆栈进行中断处理。</p>
-<p>当然这个过程中还有很多细节问题，比如说call save时，在save过程中已经实现了堆栈切换，因为不能直接ret回来，这时使用进程结构体中一个ret_addr来进行跳转；中断处理中将restart地址压入堆栈，使得返回时使用ret而非iretd导致代码比较简洁，将保存和返回的代码分别放在save和restart函数中实现<br>。</p>
+<p>当然这个过程中还有很多细节问题，比如说call save时，在save过程中已经实现了堆栈切换，因为不能直接ret回来，这时使用进程结构体中一个ret_addr来进行跳转；中断处理中将restart地址压入堆栈，使得返回时使用ret而非iretd导致代码比较简洁，将保存和返回的代码分别放在save和restart函数中实现。</p>
 
       
     </div>
